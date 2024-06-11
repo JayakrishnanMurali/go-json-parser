@@ -1,0 +1,40 @@
+{
+  "name": "John",
+  "age": 30,
+  "isStudent": false,
+  "grades": [90, 80, 70],
+  "address": {
+    "city": "New York",
+    "zip": 10001,
+    "test": null,
+    "test2": {
+      "test3": null,
+      "details": {
+        "building": "A",
+        "floor": 5,
+        "contact": {
+          "email": "john@example.com",
+          "phones": ["123-456-7890", "098-765-4321"]
+        }
+      }
+    }
+  },
+  "projects": [
+    {
+      "name": "Project X",
+      "completed": true,
+      "tasks": [
+        { "task": "Design", "status": "completed" },
+        { "task": "Development", "status": "in-progress" }
+      ]
+    },
+    {
+      "name": "Project Y",
+      "completed": false,
+      "tasks": [
+        { "task": "Research", "status": "not started" },
+        { "task": "Implementation", "status": "not started" }
+      ]
+    }
+  ]
+}

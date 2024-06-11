@@ -58,7 +58,6 @@ func (p *Parser) peekTokenIs(t token.TokenType) bool {
 }
 
 func (p *Parser) parseValue() Value {
-	fmt.Printf("Parsing value: %s\n", p.curToken.Literal) // Debug statement
 	switch p.curToken.Type {
 	case token.STRING:
 		return &StringLiteral{Token: p.curToken.Literal, Value: p.curToken.Literal}
@@ -83,7 +82,6 @@ func (p *Parser) parseValue() Value {
 
 func (p *Parser) parseObject() *Object {
 	obj := &Object{Pairs: make(map[string]Value)}
-	fmt.Println("Parsing object") // Debug statement
 
 	if !p.currTokenIs(token.LBRACE) {
 		p.addError(fmt.Sprintf("Expected {, got %s", p.curToken.Type))
@@ -130,7 +128,6 @@ func (p *Parser) parseObject() *Object {
 
 func (p *Parser) parseArray() *Array {
 	arr := &Array{}
-	fmt.Println("Parsing array") // Debug statement
 
 	if !p.currTokenIs(token.LBRACKET) {
 		p.addError(fmt.Sprintf("Expected [, got %s", p.curToken.Type))
