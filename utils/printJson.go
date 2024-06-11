@@ -9,13 +9,9 @@ import (
 func PrintJson(node parser.Node) {
 	switch v := node.(type) {
 	case *parser.Object:
-		fmt.Println("{")
 		printObject(v, 1)
-		fmt.Println("}")
 	case *parser.Array:
-		fmt.Println("[")
 		printArray(v, 1)
-		fmt.Println("]")
 	default:
 		fmt.Println("Parsed JSON as an unknown type")
 	}
@@ -24,8 +20,8 @@ func PrintJson(node parser.Node) {
 func printObject(obj *parser.Object, indent int) {
 	for key, value := range obj.Pairs {
 		printIndent(indent)
-		fmt.Printf("%q: ", key)
-		printValue(value, indent)
+		fmt.Printf("%s: ", key)
+		printValue(value, indent+1)
 	}
 }
 
@@ -33,32 +29,28 @@ func printArray(arr *parser.Array, indent int) {
 	for i, value := range arr.Elements {
 		printIndent(indent)
 		fmt.Printf("[%d]: ", i)
-		printValue(value, indent)
+		printValue(value, indent+1)
 	}
 }
 
 func printValue(value parser.Value, indent int) {
 	switch v := value.(type) {
 	case *parser.StringLiteral:
-		fmt.Printf("%q\n", v.Value)
+		fmt.Printf("String: %s\n", v.Value)
 	case *parser.IntegerLiteral:
-		fmt.Printf("%d\n", v.Value)
+		fmt.Printf("Integer: %d\n", v.Value)
 	case *parser.BooleanLiteral:
-		fmt.Printf("%t\n", v.Value)
+		fmt.Printf("Boolean: %t\n", v.Value)
 	case *parser.NullLiteral:
-		fmt.Println("null")
+		fmt.Println("Null")
 	case *parser.Object:
-		fmt.Println("{")
+		fmt.Println("Object:")
 		printObject(v, indent+1)
-		printIndent(indent)
-		fmt.Println("}")
 	case *parser.Array:
-		fmt.Println("[")
+		fmt.Println("Array:")
 		printArray(v, indent+1)
-		printIndent(indent)
-		fmt.Println("]")
 	default:
-		fmt.Println("unknown type")
+		fmt.Printf("Unknown type\n")
 	}
 }
 
